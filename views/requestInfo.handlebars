@@ -1,0 +1,10 @@
+<h2>Request Info from{{profile.name}}</h2>
+<form action='/requestInfo' method="POST">
+    <table><td><input type="hidden" name="to" value="{{profile.email}}"/></td>
+    <td><input type="hidden" name="from" value="{{req.user.email}}"/></td>
+    <td><input type="text" name="subject"></td>
+    <td><input type="text" name="message"/></td>
+    <button class="request" name="requestInfo"type="submit">Send!</button>
+</form>
+    
+    <a href="/">Return Home</a>

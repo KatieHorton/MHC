@@ -7,7 +7,7 @@ const GithubStrategy = require('passport-github2');
 //const GoogleStrategy = require('passport-google-oauth20');
 const flash = require('connect-flash');
 const User = require('./models/user.model');
-const port = 3000;
+const port = 5000;
 const env = require('./.env');
 require('./db');
 

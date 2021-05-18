@@ -1,0 +1,16 @@
+<h1>{{#if provider}}Update{{else}}Add{{/if}} Provider</h1>
+<form id="addUpdate" action="/addProvider" method="POST">
+  <p>
+    name <input type="text" name="name" value="{{provider.name}}" /><br />
+    profession <input type="text" name="profession" value="{{provider.profession}}" /><br />
+    specialties <input type="text" name="specialies" value="[{{provider.specialties}}]" /><br />
+    email <input type="email" name="email" value="{{provider.email}}" /><br />
+    phone <input type="tel" name="phone" value="{{provider.phone}}" /><br />
+    address <input type="text" name="address" value="{{provider.address}}" /><br />
+    password <input type="password" name="password" value="{{provider.password}}" /><br />
+    <input type="hidden" name="id" value="{{ provider._id }}" /> <br />
+    <button id="addButton" type="submit">{{#if provider}}Update{{else}}Add{{/if}} Provider</button>
+  </p>
+</form>
+
+<p id="log"></p>

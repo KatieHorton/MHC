@@ -1,0 +1,66 @@
+
+<h1>Search By Profession</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>Psychiatry</td>
+        <td><input type="checkbox" id="Psychiatrist" name="profession" value="Psychiatrist" checked="{{isChecked}}">
+        </td>
+
+    </tr>
+    <tr>
+        <td>Counseling</td>
+        <td><input type="checkbox" id="Counseling" name="profession" value="Counselor" checked="{{isChecked}}"></td>
+    </tr>
+    <tr>
+        <td>Nurse Practioner</td>
+        <td><input type="checkbox" id="Nurse Practitioner" name="profession" value="Nurse Practitioner"
+                checked="{{isChecked}}"></td>
+    </tr>
+    <tr>
+        <td>Social Work</td>
+        <td><input type="checkbox" id="Social Work" name="profession" value="Social Work" checked="{{isChecked}}"></td>
+        <br />
+    </tr>
+</table>
+<button id="submitProfessions"> Find Services </button>
+<div id="professionals-container" style="display: none">
+    <ul id="professionals-list">
+
+    </ul>
+</div>
+<script>
+    document.addEventListener('click', async (event) => {
+        if (event.target.matches('#submitProfessions')) {
+            const professionalsContainer = document.getElementById("professionals-container");
+            const professionalsList = document.getElementById("professionals-list");
+            professionalsList.innerHTML = "";
+            const checkboxes = document.getElementsByName("profession")
+            console.log(checkboxes);
+            const professions = [];
+            for (checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    professions.push(checkbox.value);
+                }
+            }
+            console.log(professions);
+            const result = await fetch('http://localhost:3000/getProfession', {
+                method: 'POST', body: JSON.stringify({ professions }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const professionals = await result.json();
+            console.log(professionals);
+            for (professional of professionals) {
+                const li = document.createElement("li");
+                li.innerText = `${professional.name} - ${professional.profession}`;
+                professionalsList.appendChild(li);
+            }
+            professionalsContainer.style = 'display: block';
+        }
+    });
+</script>

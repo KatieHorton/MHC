@@ -1,0 +1,39 @@
+<form id="profile" action="/profile" method="GET">
+    <div class="top">
+        <h1>{{profile.name}}</h1>
+        <h2>{{profile.profession}}</h2>
+    </div>
+
+    <div class="moreInfo">
+        <h3>Specialties:</h3>
+        <p>
+            {{profile.specialty}}
+        </p>
+
+        <h3>Contact:</h3>
+        <ul>
+            <li>{{profile.phone}}</li>
+            <li>{{profile.address}}</li>
+        </ul>
+        <a href="/request">Request More Information</a>
+    </div>
+
+    <div class="comments">
+        <h3>Reviews:</h3>
+        <p>
+            {{profile.comments}}
+        </p>
+
+    </div>
+    <div>
+        <a href="/update/{{profile._id}}">Update Provider</a>
+        <a href="/delete/{{profile._id}}">Delete Provider</a>
+    </div>
+
+
+    <div class="hide" hidden>
+        <p>
+            {{profile._id}}
+        </p>
+    </div>
+</form>

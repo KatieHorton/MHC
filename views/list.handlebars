@@ -1,0 +1,45 @@
+{{#if flashes}}
+{{#each flashes}}
+<div class="alert alert-success">{{ this }}</div>
+{{/each}}
+{{/if}}
+
+<h3>{{ name }} <a class="btn btn-secondary btn-sm" href="/login"> log in</a></h3>
+<h1>{{ header }}</h1>
+
+  <a href="/add">Add a Provider</a>
+</h2>
+
+
+<p>
+  <a href= "/profession">Search by Profession</a>
+</p>
+
+<table id = "list">
+  <tr>
+    <th>Name</th>
+    <th>Profession</th>
+    <th>Specialty</th>
+    <th>Phone</th>
+    <th>View Profile</th>
+
+  </tr>
+  {{#each providers}}
+  <tr>
+    <td>{{this.name}}</td>
+    <td>{{this.profession}}</td></td>
+    <td>{{this.specialty}}</td>
+    <td>{{this.phone}}</td>
+    <td><a href="/profile/{{this._id}}" > Profile </a></td>
+
+    </tr>
+
+    <div class="info" hidden>
+      <p>{{this.password}}</p>
+      <p>{{this.email}}</p>
+      <p>{{this.address}}</p>
+      <p>{{this._id}}</p>
+      </div>
+
+  {{/each}}
+</table>

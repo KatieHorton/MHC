@@ -13,9 +13,9 @@ router.post('/login', auth.login);
 router.get('/register', auth.registrationPage);
 router.post('/register', user.register, auth.login);
 router.get('/github', passport.authenticate('github', { 
-  clientID: process.env.CLIENT_ID,
+  clientID: process.env.GITHUB_CLIENT_ID,
   scope: ['user:email'] }));
-router.get(process.env.CALLBACK, passport.authenticate('github', {
+router.get(process.env.GITHUB_CALLBACK, passport.authenticate('github', {
   failureRedirect: '/login',
   successRedirect: '/',
   successFlash: 'Login successful!'

@@ -14,9 +14,9 @@ require('./db');
 passport.use(
   new GithubStrategy(
     {
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.SECRET,
-      callbackURL: process.env.CALLBACK
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+      callbackURL: process.env.GITHUB_CALLBACK
     },
     async (accessToken, refreshToken, profile, done) => {
       try {

@@ -15,7 +15,7 @@
   "homepage": "https://polar-thicket-95106.herokuapp.com/",
   "scripts  ": {
     "test": "jest",
-    "start": "node index.js"
+    "start": "npm start"
   },
   "dependencies": {
     "connect-flash": "^0.1.1",

@@ -6,16 +6,16 @@ const auth = require('../controllers/auth.controller');
 const passport = require('passport');
 const handleError = require('../handlers/handleError');
 const flashes = require('connect-flash');
-const config = require('../config/dev');
+const { CLIENT_ID, CALLBACK } = require('../config/dev');
 //AUTH
 router.get('/login', auth.loginPage);
 router.post('/login', auth.login);
 router.get('/register', auth.registrationPage);
 router.post('/register', user.register, auth.login);
 router.get('/github', passport.authenticate('github', { 
-  clientID: config.CLIENT_ID,
+  clientID: process.env.CLIENT_ID,
   scope: ['user:email'] }));
-router.get(config.CALLBACK, passport.authenticate('github', {
+router.get(process.env.CALLBACK, passport.authenticate('github', {
   failureRedirect: '/login',
   successRedirect: '/',
   successFlash: 'Login successful!'

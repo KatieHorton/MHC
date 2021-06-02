@@ -7,16 +7,16 @@ const GithubStrategy = require('passport-github2');
 //const GoogleStrategy = require('passport-google-oauth20');
 const flash = require('connect-flash');
 const User = require('./models/user.model');
-const config = require('./config/dev.js');
-const port = 5000;
+const { CLIENT_ID, SECRET, CALLBACK } = require('./config/dev');
+const PORT = 5000;
 require('./db');
 
 passport.use(
   new GithubStrategy(
     {
-      clientID: config.CLIENT_ID,
-      clientSecret: config.SECRET,
-      callbackURL: config.CALLBACK
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.SECRET,
+      callbackURL: process.env.CALLBACK
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -94,4 +94,4 @@ app.set('view engine', 'handlebars');
 
 app.use(routes);
 
-app.listen(config.PORT || port, () => console.log(`Server listening on port: ${port}`));
+app.listen(PORT || port, () => console.log(`Server listening on port: ${PORT}`));

@@ -6,7 +6,6 @@ const auth = require('../controllers/auth.controller');
 const passport = require('passport');
 const handleError = require('../handlers/handleError');
 const flashes = require('connect-flash');
-const { CLIENT_ID, CALLBACK } = require('../config/dev');
 //AUTH
 router.get('/login', auth.loginPage);
 router.post('/login', auth.login);

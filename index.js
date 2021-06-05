@@ -1,3 +1,4 @@
+require('dotenv').config({ path: './.env' });
 const express = require('express');
 const routes = require('./routes');
 const exphbs = require('express-handlebars');
@@ -7,7 +8,6 @@ const GithubStrategy = require('passport-github2');
 //const GoogleStrategy = require('passport-google-oauth20');
 const flash = require('connect-flash');
 const User = require('./models/user.model');
-const { CLIENT_ID, SECRET, CALLBACK } = require('./config/dev');
 const PORT = 5000;
 require('./db');
 
@@ -95,3 +95,8 @@ app.set('view engine', 'handlebars');
 app.use(routes);
 
 app.listen(PORT || port, () => console.log(`Server listening on port: ${PORT}`));
+
+const ngrok = require('ngrok');
+(async function() {
+  const url = await ngrok.connect({ authtoken: process.env.NGROK_AUTH_TOKEN });
+})();

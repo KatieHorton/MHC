@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const { MongoClient } = require("mongodb");
-const { URI } = require('./config/dev');
 
-mongoose.connect(URI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.URI, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
 
 const db = mongoose.connection;

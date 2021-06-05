@@ -1,5 +1,7 @@
-if (process.env.NODE_ENV === "production") {
-    module.exports = require("./prod");
-    } else {
-    module.exports = require("./dev");
-    }
+const result = dotenv.config()
+
+if (result.error) {
+  throw result.error
+}
+
+console.log(result.parsed);

@@ -11,14 +11,14 @@ router.get('/login', auth.loginPage);
 router.post('/login', auth.login);
 router.get('/register', auth.registrationPage);
 router.post('/register', user.register, auth.login);
-router.get('/github', passport.authenticate('github', { 
-  clientID: process.env.GITHUB_CLIENT_ID,
-  scope: ['user:email'] }));
-router.get(process.env.GITHUB_CALLBACK, passport.authenticate('github', {
-  failureRedirect: '/login',
-  successRedirect: '/',
-  successFlash: 'Login successful!'
-}));
+// router.get('/github', passport.authenticate('github', { 
+//   clientID: process.env.GITHUB_CLIENT_ID,
+//   scope: ['user:email'] }));
+// router.get(process.env.GITHUB_CALLBACK, passport.authenticate('github', {
+//   failureRedirect: '/login',
+//   successRedirect: '/',
+//   successFlash: 'Login successful!'
+// }));
 
 //router.use('isAuth', user.isAuthenticated);
 //LIST

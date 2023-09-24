@@ -41,7 +41,7 @@ exports.listProvidersPage = async (req, res) => {
 
   let providers = await Provider.find({}).lean();
 
-  let email = req.User ? req.User.email : 'Not logged in';
+  // let email = req.User ? req.User.email : 'Not logged in';
 
   res.render('list', { header: mainHeader, providers});
 };

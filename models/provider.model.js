@@ -27,7 +27,9 @@ const providerSchema =  mongoose.Schema({
       { timestamps: true }
 
 );
+db.collection('providers').find({ name: 'Dr. Pepper' });
 
 const Provider = mongoose.model('provider', providerSchema);
 module.exports = Provider;
+
 

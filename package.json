@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/KatieHorton/MHC/issues"
   },
-  "homepage": "https://katiehorton.github.io",
+  "homepage": "https://github.com/katiehorton/mhc",
   "scripts  ": {
     "test": "jest",
     "start": "npm start"

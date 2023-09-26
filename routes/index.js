@@ -33,7 +33,7 @@ router.get('/profile', provider.profilePage);
 router.post('/profile', provider.getOne);
 router.get('/profile/:id', provider.profilePage);
 // //REQUEST INFORMATION
-// router.get('/request', provider.request);
+router.get('/request', provider.request);
 // router.post('/requestInfo', provider.getOne);
 // router.get('/requestInfo/:id', provider.requestInfo);
 //FIND BY PROFESSION

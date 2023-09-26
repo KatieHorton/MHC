@@ -75,18 +75,18 @@ exports.profilePage = async(req, res) => {
 };
 
 //REQUEST INFO
-exports.requestInfo = async(req, res) => {
-  let provider = await Provider.findById(req.params.id).lean();
-    let mail = req.body;
-    transport.sendMail(mail);
-    req.flash('info', { provider, message, flashes});
-};
+// exports.request = async(req, res) => {
+//   let provider = await Provider.findById(req.params.id).lean();
+//     let mail = req.body;
+//     transport.sendMail(mail);
+//     req.flash('info', { provider, message, flashes});
+// };
 exports.request = async(req, res) => {
   let mainHeader = 'Request Information';
   let provider = await Provider.findById(req.params.id).lean();
   //let name = provider.name;
     //send info with modemailer
-  res.render('requestInfo', {header: mainHeader, provider, flashes });
+  res.render('request', {header: mainHeader, provider, flashes });
   };
 
 

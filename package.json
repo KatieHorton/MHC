@@ -12,7 +12,10 @@
   "bugs": {
     "url": "https://github.com/KatieHorton/MHC/issues"
   },
+
   "homepage": "https://katiehorton.github.io",
+
+
   "scripts  ": {
     "test": "jest",
     "start": "npm start"
@@ -31,8 +34,15 @@
     "passport-github2": "^0.1.12",
     "passport-local-mongoose": "^6.1.0"
   },
+  
   "devDependencies": {
     "gh-pages": "^6.0.0"
+
+  
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+
   }
 
 }

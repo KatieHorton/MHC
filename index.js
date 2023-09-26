@@ -9,6 +9,7 @@ const GithubStrategy = require('passport-github2');
 const flash = require('connect-flash');
 const User = require('./models/user.model');
 const PORT = 3000;
+require('./process');
 require('./db');
 
 // passport.use(
@@ -94,7 +95,7 @@ app.set('view engine', 'handlebars');
 
 app.use(routes);
 
-app.listen(PORT || port, () => console.log(`Server listening on port: ${PORT}`));
+app.listen(process.env.PORT || 3000, () => console.log(`Server listening on port: ${PORT}`));
 
 // const ngrok = require('ngrok');
 // (async function() {

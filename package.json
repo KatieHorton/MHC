@@ -1,7 +1,7 @@
 {
   "name": "mhc",
   "version": "1.0.0",
-  "description": "mental health connect",
+  "description": "mental health connection",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -12,10 +12,10 @@
   "bugs": {
     "url": "https://github.com/KatieHorton/MHC/issues"
   },
-  "homepage": "https://github.com/katiehorton/mhc",
+  "homepage": "https://git.heroku.com/evening-escarpment-37962.git",
   "scripts  ": {
     "test": "jest",
-    "start": "npm start"
+    "start": "npm start index.js"
   },
   "dependencies": {
     "connect-flash": "^0.1.1",

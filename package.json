@@ -12,11 +12,23 @@
   "bugs": {
     "url": "https://github.com/KatieHorton/MHC/issues"
   },
-  "homepage": "https://git.heroku.com/evening-castle-00569.git",
+  "homepage": "https://git.heroku.com/mentalhealthconnection.git",
   "scripts  ": {
     "test": "jest",
     "start": "npm start index.js"
   },
+  
+  "environments": {
+    "test": {
+      "formation": {
+          "test": {
+            "quantity": 1,
+            "size": "standard-1x"
+          }
+      }
+   }
+},
+
   "dependencies": {
     "connect-flash": "^0.1.1",
     "dotenv": "^9.0.2",

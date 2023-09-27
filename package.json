@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/KatieHorton/MHC/issues"
   },
-  "homepage": "https://git.heroku.com/evening-escarpment-37962.git",
+  "homepage": "https://git.heroku.com/evening-castle-00569.git",
   "scripts  ": {
     "test": "jest",
     "start": "npm start index.js"

@@ -15,8 +15,10 @@
   "homepage": "https://git.heroku.com/mentalhealthconnection.git",
   "scripts  ": {
     "test": "jest",
-    "start": "npm start index.js"
+    "start": "npm start"
   },
+  "stack": "heroku-xx",
+
   "environments": {
     "test": {
       "formation": {
@@ -28,7 +30,7 @@
     }
   },
   
-    "stack": "heroku-xx",
+
   
 
 

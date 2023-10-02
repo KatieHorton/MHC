@@ -5,11 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "pack build mhc --builder gcr.io/paketo-buildpacks/builder:base",
-    "start": "hello-world-npx",
-    "image": "docker run --rm -it paketo-test"
+    "build": "",
+    "start": "npm start"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KatieHorton/MHC.git"
@@ -19,10 +17,8 @@
   "bugs": {
     "url": "https://github.com/KatieHorton/MHC/issues"
   },
-  "homepage": "https://git.heroku.com/mentalhealthconnection.git",
-
+  "homepage": "https://github.com/KatieHorton",
   "stack": "heroku-xx",
-
   "environments": {
     "test": {
       "formation": {
@@ -33,11 +29,6 @@
       }
     }
   },
-  
-
-  
-
-
   "dependencies": {
     "connect-flash": "^0.1.1",
     "dotenv": "^9.0.2",
@@ -46,7 +37,6 @@
     "express-session": "^1.17.1",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.7",
-    "ngrok": "^4.0.1",
     "nodemailer": "^6.6.0",
     "passport": "^0.6.0",
     "passport-github2": "^0.1.12",

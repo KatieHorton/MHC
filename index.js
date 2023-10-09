@@ -5,42 +5,43 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const passport = require('passport');
 const GithubStrategy = require('passport-github2');
-//const GoogleStrategy = require('passport-google-oauth20');
+const process = require('./process/.env');
+// const GoogleStrategy = require('passport-google-oauth20');
 const flash = require('connect-flash');
 const User = require('./models/user.model');
 const PORT = 3000;
 require('./db');
 
-// passport.use(
-//   new GithubStrategy(
-//     {
-//       clientID: process.env.GITHUB_CLIENT_ID,
-//       clientSecret: process.env.GITHUB_SECRET,
-//       callbackURL: process.env.GITHUB_CALLBACK
-//     },
-//     async (accessToken, refreshToken, profile, done) => {
-//       try {
-//         const user = await User.findOne({ clientID : github._id });
+passport.use(
+  new GithubStrategy(
+    {
+      clientID: process.ClientID,
+      clientSecret: process.ClientSecret,
+      callbackURL: 'http://localhost:3000/'
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        const user = await User.findOne({ clientID : github._id });
 
-//         if (user) {
-//           return done(null, user);
-//         } else {
-//           const newUser = new User({
-//             email: profile.email,
-//             name: profile.displayName,
-//             githubId: profile.id,
-//           });
+        if (user) {
+          return done(null, user);
+        } else {
+          const newUser = new User({
+            email: profile.email,
+            name: profile.displayName,
+            githubId: profile.id,
+          });
 
-//           await newUser.save();
+          await newUser.save();
 
-//           done(null, newUser);
-//         }
-//       } catch (error) {
-//         done(error);
-//       }
-//     }
-//   )
-// );
+          done(null, newUser);
+        }
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
 
 // passport.use(new GoogleStrategy({
 //   clientID: googleOAuthId,
@@ -63,16 +64,16 @@ require('./db');
 //   }
 // }));
 
-// passport.use(User.createStrategy());
+passport.use(User.createStrategy());
 
-// passport.serializeUser((user, done) => {
-//   done(null, user._id);
-// });
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
 
-// passport.deserializeUser(async (id, done) => {
-//   const user = await User.findById(id, "name email _id");
-//   done(null, user);
-// });
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id, "name email _id");
+  done(null, user);
+});
 const app = express();
 
 app.use(express.json());
@@ -94,5 +95,5 @@ app.set('view engine', 'handlebars');
 
 app.use(routes);
 
-app.listen(process.env.PORT || 3000, () => console.log(`Server listening on port: ${PORT}`));
+app.listen(PORT || 3000, () => console.log(`Server listening on port: ${PORT}`));
 

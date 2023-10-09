@@ -4,6 +4,7 @@ const router = express.Router();
 const user = require('../controllers/user.controller');
 const auth = require('../controllers/auth.controller');
 const passport = require('passport');
+const process = require('../process/.env');
 const handleError = require('../handlers/handleError');
 const flashes = require('connect-flash');
 //AUTH
@@ -11,16 +12,16 @@ router.get('/login', auth.loginPage);
 router.post('/login', auth.login);
 router.get('/register', auth.registrationPage);
 router.post('/register', user.register, auth.login);
-// router.get('/github', passport.authenticate('github', { 
-//   clientID: process.env.GITHUB_CLIENT_ID,
-//   scope: ['user:email'] }));
-// router.get(process.env.GITHUB_CALLBACK, passport.authenticate('github', {
-//   failureRedirect: '/login',
-//   successRedirect: '/',
-//   successFlash: 'Login successful!'
-// }));
+router.get('/github', passport.authenticate('github', { 
+  clientID: process.ClientID,
+  scope: ['user:email'] }));
+router.get(process.GithubCallback, passport.authenticate('github', {
+  failureRedirect: '/login',
+  successRedirect: '/',
+  successFlash: 'Login successful!'
+}));
 
-//router.use('isAuth', user.isAuthenticated);
+router.use('isAuth', user.isAuthenticated);
 //LIST
 //router.get('/', provider.getAll);
 router.get('/', provider.listProvidersPage);

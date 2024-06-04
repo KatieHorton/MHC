@@ -1,99 +1,79 @@
 require('dotenv').config({ path: './.env' });
+const http = require('http');
 const express = require('express');
 const routes = require('./routes/index.js');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const passport = require('passport');
-const GithubStrategy = require('passport-github2');
+const cookieParser = require('cookie-parser');
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const process = require('./process/.env');
-// const GoogleStrategy = require('passport-google-oauth20');
 const flash = require('connect-flash');
-const User = require('./models/user.model');
+const User = require('./models/user.model.js');
+const userController = require('./controllers/user.controller.js');
 const PORT = 3000;
-require('./db');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+const db = require('./db');
 
-passport.use(
-  new GithubStrategy(
-    {
-      clientID: process.ClientID,
-      clientSecret: process.ClientSecret,
-      callbackURL: 'http://localhost:3000/'
-    },
-    async (accessToken, refreshToken, profile, done) => {
-      try {
-        const user = await User.findOne({ clientID : github._id });
+// The Google account has not logged in to this app before.  Create a
+// new user record and link it to the Google account.
 
-        if (user) {
-          return done(null, user);
-        } else {
-          const newUser = new User({
-            email: profile.email,
-            name: profile.displayName,
-            githubId: profile.id,
-          });
-
-          await newUser.save();
-
-          done(null, newUser);
-        }
-      } catch (error) {
-        done(error);
-      }
-    }
-  )
-);
+// The Google account has previously logged in to the app.  Get the
+// user record linked to the Google account and log the user in.
 
 // passport.use(new GoogleStrategy({
-//   clientID: googleOAuthId,
-//   clientSecret: googleSecret,
-//   callbackURL: "http://localhost:3000/auth/google/redirect"
+//   clientID: process.googleOAuthId,
+//   clientSecret: process.googleOAuthSecret,
+//   callbackURL: 'http://localhost:3000/auth/google/callback',
+//   passReqToCallback   : true
 // }, async (accessToken, refreshToken, profile, done) => {
-//   let currentUser = await User.findOne({ googleId: profile.id });
-
-//   if (currentUser) {
-//     done(null, currentUser);
-//   }
-//   else {
-//     const newUser = new User({
-//       googleId: profile.id,
+//   let foundUser = await User.findOne({ email: profile.email });
+//   if (!foundUser) {
+//     let newUser = new User({
+//       email: profile.email,
+//       googleId: profile.id
 //     });
-
+//     console.log(newUser);
 //     await newUser.save();
-
-//     done(null, newUser);
+//   } else {
+//     return ({ foundUser });
 //   }
-// }));
+//   res.redirect('/');
+// }
+// ));
 
-passport.use(User.createStrategy());
-
-passport.serializeUser((user, done) => {
-  done(null, user._id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id, "name email _id");
-  done(null, user);
-});
 const app = express();
-
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser('your secret here'));
 app.use(session({
   secret: 'Mental Health Matters',
   resave: true,
   saveUninitialized: true
 }));
-
-app.use(flash());
-
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
+app.use(flash());
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-
 app.use(routes);
 
 app.listen(PORT || 3000, () => console.log(`Server listening on port: ${PORT}`));
 
+app.get('/auth/google',
+  passport.authenticate('google', {
+    clientId: process.googleOAuthId,
+    scope: ['email', 'profile']
+  }
+  ));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: '/failure'
+  }));

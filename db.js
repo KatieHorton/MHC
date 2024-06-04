@@ -12,20 +12,4 @@ db.on('open', () => { console.log('Magically Connected to MHC') });
 db.on('error', console.error.bind(console, 'MHC connection error, Threat Level: MIDNIGHT'));
 
 
-// db.collection('Provider').insertOne({
-
-    // "name": "Dr. Pepper",
-    // "profession": "Medicine Man",    
-    // "specialties": ["soda", "bubbles"],
-    // "email": "pepper@doctorOffice.com",
-    // "phone": "999 - 7777",
-    // "address": "123 Cherry St.",
-    // "password": "123cherry",
-    // "coments": [{ "comment": "This man is a genius!", "author": "itsfakemon" }]
-// });
-
-// const cursor = db.collection('Provider').find({ name: 'Dr. Pepper' });
 module.exports = db;
-
-
-// run index.js

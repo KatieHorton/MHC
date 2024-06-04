@@ -1,0 +1,17 @@
+<h2>
+    Users:
+</h2>
+
+
+<table id="usersList">
+    <tr>
+        <th>email</th>
+        <th>date created</th>
+    </tr>
+    {{#each users}}
+    <tr>
+        <td>{{this.email}}</td>
+        <td>{{this.created}}</td>
+    </tr>
+    {{/each}}
+</table>

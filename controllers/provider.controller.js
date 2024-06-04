@@ -3,7 +3,6 @@ const User = require('../models/user.model');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const handleError = require('../handlers/handleError');
-const transport = require('../communication/nodemailer');
 const flashes = require('connect-flash');
 const db = require('../db');
 
@@ -31,7 +30,7 @@ exports.addProvider = async (req, res) => {
   res.redirect('/');
 };
 exports.getAll = async(req, res, next) => {
-  let allProviders = await Provider.find({}).lean();
+  let allProviders = await Providers.find({}).lean();
   res.send([allProviders]);
   next();
 };
@@ -55,7 +54,6 @@ exports.addUpdateProviderPage = async (req, res) => {
     res.render('addUpdate');
   }
 };
-
 
 exports.getOne = async(req, res) => {
   const foundProvider = await Provider.findById(req.params.id).lean();
@@ -141,5 +139,5 @@ exports.deleteProvider = async (req, res) => {
   req.flash('info', 'provider deleted');
   res.redirect('/');
 };
-
-console.log(Provider.findById('6092ca017f0e49dc6b0c'));
+// instance
+// console.log(Provider.findById('6092ca017f0e49dc6b0c'));

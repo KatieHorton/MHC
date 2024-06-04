@@ -1,0 +1,12 @@
+<h1>{{#if user}}Update{{else}}Add{{/if}} User</h1>
+<form id="addUpdateUser" action="/addUpdateUser" method="POST">
+  <p>
+    displayName <input type="text" name="displayName" value="{{user.displayName}}" /><br />
+    email <input type="email" name="email" value="{{user.email}}" /><br />
+    password <input type="password" name="password" value="{{user.password}}" /><br />
+    <input type="hidden" name="id" value="{{ user._id }}" /> <br />
+    <button id="addButton" type="submit">{{#if user}}Update{{else}}Add{{/if}} User</button>
+  </p>
+</form>
+
+<p id="log"></p>
